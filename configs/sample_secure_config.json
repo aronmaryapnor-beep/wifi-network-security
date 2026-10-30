@@ -1,0 +1,21 @@
+{
+  "router_model": "Example Router AX-1800 (sample data)",
+  "firmware_version": "1.0.9",
+  "ssid": "HomeLab-Secure",
+  "assessor": "Aron Maryapnor",
+  "review_date": "2026-10-28",
+  "security_mode": "WPA3-Personal",
+  "encryption": "AES",
+  "passphrase_length": 22,
+  "admin_default_credentials_changed": true,
+  "admin_https": true,
+  "wps_enabled": false,
+  "remote_management": false,
+  "upnp_enabled": false,
+  "guest_network_enabled": true,
+  "guest_isolation": true,
+  "firmware_up_to_date": true,
+  "pmf": "required",
+  "ssid_is_default": false,
+  "unknown_clients": 0
+}

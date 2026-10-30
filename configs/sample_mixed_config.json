@@ -1,0 +1,18 @@
+{
+  "router_model": "Example Router AC-1200 (sample data)",
+  "firmware_version": "2.3.0",
+  "ssid": "Flat-12B",
+  "assessor": "Aron Maryapnor",
+  "review_date": "2026-10-28",
+  "security_mode": "WPA2/WPA3-Personal",
+  "encryption": "AES",
+  "passphrase_length": 13,
+  "admin_default_credentials_changed": true,
+  "admin_https": false,
+  "wps_enabled": false,
+  "remote_management": false,
+  "guest_network_enabled": false,
+  "firmware_up_to_date": true,
+  "pmf": "optional",
+  "unknown_clients": 0
+}

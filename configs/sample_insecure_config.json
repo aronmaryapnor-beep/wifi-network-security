@@ -1,0 +1,21 @@
+{
+  "router_model": "Example Router N300 (sample data)",
+  "firmware_version": "0.9.1",
+  "ssid": "TP-Link_4F2A",
+  "assessor": "Aron Maryapnor",
+  "review_date": "2026-10-28",
+  "security_mode": "WPA-Personal",
+  "encryption": "AES+TKIP",
+  "passphrase_length": 8,
+  "admin_default_credentials_changed": false,
+  "admin_https": false,
+  "wps_enabled": true,
+  "remote_management": true,
+  "upnp_enabled": true,
+  "guest_network_enabled": true,
+  "guest_isolation": false,
+  "firmware_up_to_date": false,
+  "pmf": "disabled",
+  "ssid_is_default": true,
+  "unknown_clients": 2
+}
