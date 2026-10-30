@@ -39,9 +39,9 @@ The browser opens at http://localhost:8501. Pages in the sidebar:
 | Protocols | WEP / WPA / WPA2 / WPA3 compared like "types of locks" |
 | Threats & Fixes | Common attacks and the defence for each |
 | Checklist | Tick-off checklist with progress bar |
-| This Computer | Checks Wi-Fi security settings manually (including on Streamlit Cloud), or detects them automatically when run locally |
+| This Computer | Checks Wi-Fi security settings manually, or detects them automatically when run locally |
 
-On Streamlit Cloud, the app cannot inspect your laptop's Wi-Fi adapter. Open **This Computer** and enter the security mode and cipher shown in your device or router settings. Automatic detection is only available when the app is running locally on the computer being checked.
+Open **This Computer** and enter the security mode and cipher shown in your device or router settings, or run the app locally to detect them automatically.
 
 ## Requirements
 

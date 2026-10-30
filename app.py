@@ -269,15 +269,14 @@ def page_checklist():
 # ---------------------------------------------------------------- Local
 def page_local():
     st.title("💻 This Computer's Wi-Fi")
-    st.write("On Streamlit Cloud, this app cannot inspect your laptop's Wi-Fi directly. "
-             "Enter the security settings shown by your device or router to check them here. "
+    st.write("Enter the Wi-Fi security settings shown by your device or router to check them here. "
              "Automatic detection is available when you run the app locally.")
 
     method = st.radio(
         "Check method",
-        ["Enter settings manually (works on Streamlit Cloud)", "Detect this computer (local only)"],
+        ["Enter settings manually", "Detect this computer (local only)"],
     )
-    if method == "Enter settings manually (works on Streamlit Cloud)":
+    if method == "Enter settings manually":
         with st.form("manual_connection_form"):
             security_mode = st.selectbox(
                 "Wi-Fi security mode",
