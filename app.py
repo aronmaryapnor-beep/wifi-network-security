@@ -269,9 +269,39 @@ def page_checklist():
 # ---------------------------------------------------------------- Local
 def page_local():
     st.title("💻 This Computer's Wi-Fi")
-    st.write("Reads the security mode of the Wi-Fi network **the computer running this app** is connected to. "
-             "It works only when you run the app on your own laptop (not on a cloud server).")
-    if st.button("Check my connection"):
+    st.write("On Streamlit Cloud, this app cannot inspect your laptop's Wi-Fi directly. "
+             "Enter the security settings shown by your device or router to check them here. "
+             "Automatic detection is available when you run the app locally.")
+
+    method = st.radio(
+        "Check method",
+        ["Enter settings manually (works on Streamlit Cloud)", "Detect this computer (local only)"],
+    )
+    if method == "Enter settings manually (works on Streamlit Cloud)":
+        with st.form("manual_connection_form"):
+            security_mode = st.selectbox(
+                "Wi-Fi security mode",
+                ["WPA3-Personal", "WPA2/WPA3-Personal", "WPA2-Personal",
+                 "WPA-Personal", "WEP", "Open"],
+            )
+            encryption = st.selectbox(
+                "Encryption / cipher",
+                ["AES / CCMP", "AES+TKIP", "TKIP", "WEP", "Unknown"],
+            )
+            submitted = st.form_submit_button("Check these settings", type="primary")
+        if submitted:
+            cipher = {
+                "AES / CCMP": "CCMP",
+                "Unknown": None,
+            }.get(encryption, encryption)
+            info = {"security_mode": security_mode, "encryption": cipher}
+            st.json(info)
+            findings, _ = audit(info)
+            for f in findings:
+                if f.id in ("SEC-01", "ENC-01") and f.status != "UNKNOWN":
+                    {"PASS": st.success, "WARN": st.warning, "FAIL": st.error}[f.status](
+                        f"{f.area}: {f.observed} - {f.status}")
+    elif st.button("Check my connection"):
         info = current_connection()
         if not info:
             st.error("Could not read a Wi-Fi connection (not connected, no Wi-Fi adapter, or unsupported system).")
