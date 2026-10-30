@@ -39,9 +39,9 @@ The browser opens at http://localhost:8501. Pages in the sidebar:
 | Protocols | WEP / WPA / WPA2 / WPA3 compared like "types of locks" |
 | Threats & Fixes | Common attacks and the defence for each |
 | Checklist | Tick-off checklist with progress bar |
-| This Computer | Checks Wi-Fi security settings manually, or detects them automatically when run locally |
+| This Computer | Checks Wi-Fi security settings entered from your device or router |
 
-Open **This Computer** and enter the security mode and cipher shown in your device or router settings, or run the app locally to detect them automatically.
+Open **This Computer** and enter the security mode and cipher shown in your device or router settings.
 
 ## Requirements
 

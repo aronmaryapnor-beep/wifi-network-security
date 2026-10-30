@@ -8,7 +8,6 @@ from pathlib import Path
 import streamlit as st
 
 from wifi_audit.checks import audit
-from wifi_audit.local_scan import current_connection
 from wifi_audit.passphrase import evaluate
 from wifi_audit.report import to_html, to_markdown
 
@@ -269,42 +268,25 @@ def page_checklist():
 # ---------------------------------------------------------------- Local
 def page_local():
     st.title("💻 This Computer's Wi-Fi")
-    st.write("Enter the Wi-Fi security settings shown by your device or router to check them here. "
-             "Automatic detection is available when you run the app locally.")
+    st.write("Enter the Wi-Fi security settings shown by your device or router to check them here.")
 
-    method = st.radio(
-        "Check method",
-        ["Enter settings manually", "Detect this computer (local only)"],
-    )
-    if method == "Enter settings manually":
-        with st.form("manual_connection_form"):
-            security_mode = st.selectbox(
-                "Wi-Fi security mode",
-                ["WPA3-Personal", "WPA2/WPA3-Personal", "WPA2-Personal",
-                 "WPA-Personal", "WEP", "Open"],
-            )
-            encryption = st.selectbox(
-                "Encryption / cipher",
-                ["AES / CCMP", "AES+TKIP", "TKIP", "WEP", "Unknown"],
-            )
-            submitted = st.form_submit_button("Check these settings", type="primary")
-        if submitted:
-            cipher = {
-                "AES / CCMP": "CCMP",
-                "Unknown": None,
-            }.get(encryption, encryption)
-            info = {"security_mode": security_mode, "encryption": cipher}
-            st.json(info)
-            findings, _ = audit(info)
-            for f in findings:
-                if f.id in ("SEC-01", "ENC-01") and f.status != "UNKNOWN":
-                    {"PASS": st.success, "WARN": st.warning, "FAIL": st.error}[f.status](
-                        f"{f.area}: {f.observed} - {f.status}")
-    elif st.button("Check my connection"):
-        info = current_connection()
-        if not info:
-            st.error("Could not read a Wi-Fi connection (not connected, no Wi-Fi adapter, or unsupported system).")
-            return
+    with st.form("manual_connection_form"):
+        security_mode = st.selectbox(
+            "Wi-Fi security mode",
+            ["WPA3-Personal", "WPA2/WPA3-Personal", "WPA2-Personal",
+             "WPA-Personal", "WEP", "Open"],
+        )
+        encryption = st.selectbox(
+            "Encryption / cipher",
+            ["AES / CCMP", "AES+TKIP", "TKIP", "WEP", "Unknown"],
+        )
+        submitted = st.form_submit_button("Check these settings", type="primary")
+    if submitted:
+        cipher = {
+            "AES / CCMP": "CCMP",
+            "Unknown": None,
+        }.get(encryption, encryption)
+        info = {"security_mode": security_mode, "encryption": cipher}
         st.json(info)
         findings, _ = audit(info)
         for f in findings:
